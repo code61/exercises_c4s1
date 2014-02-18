@@ -15,7 +15,7 @@ describe 'sum array' do
 
   it "calculates sums with a multiplier when provided" do
     expect(sum([1,2,3], -1)).to eq(-6)
-    expect(sum([100]), 5).to eq(500)
+    expect(sum([100], 5)).to eq(500)
   end
 
 end
