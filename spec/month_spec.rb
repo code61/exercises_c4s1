@@ -1,4 +1,4 @@
-require './dates'
+require '../dates'
 
 describe 'month function' do
 
@@ -12,7 +12,7 @@ describe 'month function' do
     expect(month(7)).to  eq('July')
     expect(month(8)).to  eq('August')
     expect(month(9)).to  eq('September')
-    expect(month(10)).to eq('Ocotber')
+    expect(month(10)).to eq('October')
     expect(month(11)).to eq('November')
     expect(month(12)).to eq('December')
     expect(month(13)).to eq('')
