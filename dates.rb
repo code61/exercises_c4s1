@@ -20,7 +20,7 @@ end
 # You should assume the function will always be 
 # called with a non-negative whole number
 def last_digit(n)
-
+	n%10	
 end
 
 # Returns the last-but-one digit of a whole number
@@ -32,7 +32,7 @@ end
 # You should assume the function will always be 
 # called with a non-negative whole number
 def penultimate_digit(n)
-
+	last_digit(n/10)
 end
 
 # Returns the appropriate 'th', 'nd', 'rd' or 'st' for
@@ -48,7 +48,9 @@ end
 # You should assume the function will always be 
 # called with a non-negative whole number
 def ordinal_suffix(n)
-
+	m = last_digit(n)
+	suffixes = ['th','st','nd','rd','th','th','th','th','th','th','th']
+	suffixes[m]
 end
 
 
@@ -58,5 +60,9 @@ end
 #   date_in_words('12/11/2014') #=> '12th November, 2014'
 #
 def date_in_words(date_string)
-
+	s = date_string.split('/')
+	d = s[0]
+	m = s[1]
+	y = s[2]
+	[d,ordinal_suffix(d.to_i),' ',month(m.to_i),' ',y].join
 end
