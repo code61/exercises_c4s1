@@ -1,4 +1,4 @@
-require '../dates'
+require './dates'
 
 describe 'month function' do
 
