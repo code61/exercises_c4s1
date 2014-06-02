@@ -6,8 +6,11 @@
 #   month(13) #=> ''
 #
 def month(n)
-	months=['January','February','March','April','May','June','July','August','September','October','November']
-	months[n-1]
+	months_names = ['January','February','March','April','May','June','July','August','September','October','November','December']
+	months_ordinals = [1,2,3,4,5,6,7,8,9,10,11,12]
+	months_hash = Hash[months_ordinals.zip(months_names)]
+	months_hash.default = ''
+	months_hash[n]
 end
 
 
@@ -49,8 +52,12 @@ end
 # called with a non-negative whole number
 def ordinal_suffix(n)
 	m = last_digit(n)
-	suffixes = ['th','st','nd','rd','th','th','th','th','th','th','th']
-	suffixes[m]
+	if penultimate_digit(n) == 1 # must take care of the 'teens', which are all '--nth'
+		'th'
+	else
+		suffixes = ['th','st','nd','rd','th','th','th','th','th','th','th']
+		suffixes[m]
+	end
 end
 
 
@@ -64,5 +71,5 @@ def date_in_words(date_string)
 	d = s[0]
 	m = s[1]
 	y = s[2]
-	[d,ordinal_suffix(d.to_i),' ',month(m.to_i),' ',y].join
+	[d,ordinal_suffix(d.to_i),' ',month(m.to_i),', ',y].join
 end
