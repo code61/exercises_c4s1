@@ -5,7 +5,7 @@
 #  multiply_and_sum(-1, 2) #=> -1
 #
 def multiply_and_sum(a, b)
-
+	( a * b ) + a + b
 end
 
 # Says hello, defaulting to 'Hello World!'
@@ -13,8 +13,8 @@ end
 #  hello('Tom') #=> "Hello Tom!"
 #  hello        #=> "Hello World!"
 #
-def hello(name)
-
+def hello(name = 'World')
+	"Hello #{name}!"
 end
 
 
@@ -26,6 +26,9 @@ end
 #  explain_integer_divide(33, 7) #=> "33 divided by 7 is 4 remainder 5"
 #  
 def explain_integer_divide(a, b)
+	quotient = a / b
+	remainder = a % b 
+	"#{a} divided by #{b} is #{quotient} remainder #{remainder}"
 end
 
 
@@ -34,8 +37,12 @@ end
 #  sum([1, 2, 3])      #=> 6
 #  sum([4, 5, 6], -1)  #=> -15
 #
-def sum(array)
-
+def sum(array, multiplier=1)
+	sum = 0
+	array.each do |i|
+		sum = sum + i
+	end
+	sum * multiplier
 end
 
 
@@ -49,6 +56,47 @@ end
 # [A thrashing is where one team beats another by 3 or more goals]
 #
 def describe_result(team1, team2, score1, score2)
+	goal_difference = score1 - score2
+
+	if goal_difference == 0
+	  nature = 'drew with'
+		victor = team1
+		loser = team2
+	else
+		if goal_difference > 3 
+			nature = 'thrashed'
+			victor = team1
+			loser = team2
+		else
+			if goal_difference > 0
+				nature = 'beat'
+				victor = team1
+				loser = team2
+			else
+				if goal_difference < -3
+					nature = 'thrashed'
+					victor = team2
+					loser = team1
+				else
+					if goal_difference < 0
+						nature ='beat'
+						victor = team2
+						loser = team1
+					end		
+				end
+			end
+		end
+	end
+
+	if goal_difference < 0
+		victor_score = score2
+		loser_score = score1
+	else
+		victor_score = score1
+		loser_score = score2
+	end
+
+		"#{victor} #{nature} #{loser}, #{victor_score} - #{loser_score}"
 
 end
 # You'll need to write your own test for this in spec/describe_result_spec.rb
